@@ -1,0 +1,18 @@
+include *.txt
+include *.md
+include *.pkl
+recursive-include ./cell_TP_pred_model *
+
+include cell_TP_pred_model/datasets/bike-rental-dataset.csv
+include cell_TP_pred_model/datasets/test.csv
+include cell_TP_pred_model/trained_models/*.json
+include cell_TP_pred_model/VERSION
+include cell_TP_pred_model/config.yml
+
+include ./requirements/requirements.txt
+include ./requirements/test_requirements.txt
+exclude *.log
+exclude *.cfg
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]

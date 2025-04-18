@@ -1,0 +1,41 @@
+# Package Overview
+package_name: cell_TP_pred_model
+
+# Data Files
+training_data_file: cell_perf_report.csv
+
+# Variables
+# The variable we are attempting to predict (cnt)
+target: cnt
+
+model_name: cell_TP_pred_model
+model_save_file: cell_TP_pred__model_output_v
+
+# Features that will go inside processing pipeline
+features:
+  - S1.ConnEstSucc
+
+unused_fields:  # Features to drop before pipeline
+  - id
+  - Time
+
+# Features names
+id_var: id
+Time_var: Time
+s1_connEstSucc_var: S1.ConnEstSucc
+
+# Mappings for Ordinal categorical features
+ 
+# Set train/test split
+test_size: 0.20
+
+# Set the random seed
+random_state: 42
+min_min_child_weight: 1
+max_min_child_weight: 10
+min_n_estimators: 100
+max_n_estimators: 1000
+min_max_depth: 3
+max_max_depth: 12
+min_learning_rate: 0.01
+max_learning_rate: 0.3
