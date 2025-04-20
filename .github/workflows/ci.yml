@@ -26,8 +26,28 @@ jobs:
         path: cell_TP_pred_model/trained_models/*.json
         retention-days: 1
 
+  test:
+    needs: train
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: '3.10'
+    - uses: actions/download-artifact@v4
+      with:
+        name: my-trained-pipeline
+        path: cell_TP_pred_model/trained_models
+    - name: Install dependencies
+      run: pip install -r requirements/test_requirements.txt
+    - name: Test with pytest
+      run: pytest
+
   build:
-    needs: [train]
+    needs: [train, test]
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -52,7 +72,7 @@ jobs:
         retention-days: 1
 
   push-image:
-    needs: [train, build]
+    needs: [train, test, build]
     runs-on: ubuntu-latest
     steps:
     - name: Repo Checkout
