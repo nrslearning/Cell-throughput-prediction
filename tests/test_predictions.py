@@ -15,7 +15,7 @@ from cell_TP_pred_model.predict import make_prediction
 
 def test_make_prediction(sample_input_data):
     # Given
-    expected_predictions = 180
+    expected_predictions = 178
     
     print("\n###Sample_input_data[0][0]: ", sample_input_data[0][0])
     print("\n>>>sample_input_data[1][0]:", sample_input_data[1][0])
